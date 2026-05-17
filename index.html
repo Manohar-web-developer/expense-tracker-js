@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="RESPONSIVE.css">
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-wallet" style="color:#fff;font-size:20px;"></i></div>
+      <div class="brand-text">
+        <h1>Expense Tracker</h1>
+        <p>Track your income and expenses</p>
+      </div>
+    </div>
+    <button class="btn-primary" id="addTransactionBtn">
+      <i class="fa-solid fa-plus"></i> Add Transaction
+    </button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon balance"><i class="fa-solid fa-wallet"></i></div>
+      <div class="stat-info">
+        <label>Total Balance</label>
+        <div class="amount" id="totalBalance">₹0.00</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon income"><i class="fa-solid fa-arrow-trend-up"></i></div>
+      <div class="stat-info">
+        <label>Total Income</label>
+        <div class="amount income-val" id="totalIncome">₹0.00</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon expense"><i class="fa-solid fa-arrow-trend-down"></i></div>
+      <div class="stat-info">
+        <label>Total Expense</label>
+        <div class="amount expense-val" id="totalExpense">₹0.00</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon count"><i class="fa-solid fa-list-ul"></i></div>
+      <div class="stat-info">
+        <label>Transactions</label>
+        <div class="amount count-val" id="txCount">0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD TRANSACTION FORM -->
+  <div class="form-card">
+    <h2>Add New Transaction</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="txTitle" placeholder="e.g. Salary, Groceries" autocomplete="off"/>
+        <span class="error-msg" id="titleError">Title is required</span>
+      </div>
+      <div class="form-group">
+        <label>Amount</label>
+        <div class="input-rupee">
+          <input type="number" id="txAmount" placeholder="Enter amount" autocomplete="off"/>
+          <span class="rupee-sign">₹</span>
+        </div>
+        <span class="error-msg" id="amountError">Valid amount is required</span>
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <select id="txType">
+          <option value="Expense">Expense</option>
+          <option value="Income">Income</option>
+        </select>
+        <span class="error-msg" id="typeError">Please select a type</span>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="txCategory">
+          <option value="">Select category</option>
+          <option value="Salary">Salary</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Freelance">Freelance</option>
+          <option value="Other">Other</option>
+        </select>
+        <span class="error-msg" id="categoryError">Please select a category</span>
+      </div>
+    </div>
+    <button class="btn-primary" id="submitBtn"><i class="fa-solid fa-circle-plus"></i> Add Transaction</button>
+  </div>
+
+  <!-- FILTER BAR + TABLE -->
+  <div class="filter-card">
+    <div class="filter-tabs">
+      <button class="tab active-all" id="filterAll">All</button>
+      <button class="tab tab-income" id="filterIncome"><i class="fa-solid fa-arrow-trend-up"></i> Income</button>
+      <button class="tab tab-expense" id="filterExpense"><i class="fa-solid fa-arrow-trend-down"></i> Expense</button>
+    </div>
+    <div class="filter-right">
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="Salary">Salary</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Freelance">Freelance</option>
+        <option value="Other">Other</option>
+      </select>
+      <div class="icon-btn"><i class="fa-regular fa-calendar"></i></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h2>Recent Transactions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="txTableBody">
+       
+      </tbody>
+    </table>
+    <div class="empty-state" id="emptyState"><i class="fa-regular fa-face-smile"></i> No more transactions</div>
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="script.js"></script>
+</body>
+</html>
